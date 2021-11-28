@@ -1,8 +1,8 @@
 # linkedin-network-analysis
 
-[images/linkedin.jpeg](linkedin background)
+![linkedin background](images/linkedin.jpeg)
 
-In this project, I conducted a network analysis using graphy theories to understand more about my LinkedIn connections.
+In this project, I conducted a network analysis using graph theories to understand more about my LinkedIn connections.
 
 ## Repository Contents
 - [Notebook workings](linkedin-network-analysis.ipynb)
