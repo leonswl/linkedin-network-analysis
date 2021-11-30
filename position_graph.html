@@ -1,0 +1,116 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 700px;
+            height: 700px;
+            background-color: black;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "root", "label": "root", "shape": "dot", "size": 10}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Research Assistant", "label": "Research Assistant", "shape": "dot", "size": 8, "title": "8"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Data Scientist", "label": "Data Scientist", "shape": "dot", "size": 6, "title": "6"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Software Engineer", "label": "Software Engineer", "shape": "dot", "size": 5, "title": "5"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Consultant", "label": "Consultant", "shape": "dot", "size": 5, "title": "5"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Data Analyst", "label": "Data Analyst", "shape": "dot", "size": 4, "title": "4"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Senior Executive", "label": "Senior Executive", "shape": "dot", "size": 4, "title": "4"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Manager", "label": "Manager", "shape": "dot", "size": 4, "title": "4"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Engineer", "label": "Engineer", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Co-Founder", "label": "Co-Founder", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Senior Consultant", "label": "Senior Consultant", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Data Science Intern", "label": "Data Science Intern", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Environmental Consultant", "label": "Environmental Consultant", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Graduate Student", "label": "Graduate Student", "shape": "dot", "size": 3, "title": "3"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "PHD Candidate", "label": "PHD Candidate", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Chief Executive Officer", "label": "Chief Executive Officer", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Associate Data Analyst", "label": "Associate Data Analyst", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "PHD Student", "label": "PHD Student", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Sustainability Analyst", "label": "Sustainability Analyst", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Postdoctoral Researcher", "label": "Postdoctoral Researcher", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "PhD Candidate", "label": "PhD Candidate", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Catastrophe Risk Analyst", "label": "Catastrophe Risk Analyst", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Business Development Executive", "label": "Business Development Executive", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "President", "label": "President", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Product Designer", "label": "Product Designer", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Project Engineer", "label": "Project Engineer", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Founder", "label": "Founder", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Business Development Manager", "label": "Business Development Manager", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Associate", "label": "Associate", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Business Development Associate", "label": "Business Development Associate", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Data Engineer", "label": "Data Engineer", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Senior Data Analyst", "label": "Senior Data Analyst", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Management Associate", "label": "Management Associate", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Assistant Manager", "label": "Assistant Manager", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "Intern", "label": "Intern", "shape": "dot", "size": 2, "title": "2"}, {"color": "#3449eb", "font": {"color": "white"}, "id": "UX Designer", "label": "UX Designer", "shape": "dot", "size": 2, "title": "2"}]);
+        edges = new vis.DataSet([{"color": "grey", "from": "root", "to": "Research Assistant", "weight": 1}, {"color": "grey", "from": "root", "to": "Data Scientist", "weight": 1}, {"color": "grey", "from": "root", "to": "Software Engineer", "weight": 1}, {"color": "grey", "from": "root", "to": "Consultant", "weight": 1}, {"color": "grey", "from": "root", "to": "Data Analyst", "weight": 1}, {"color": "grey", "from": "root", "to": "Senior Executive", "weight": 1}, {"color": "grey", "from": "root", "to": "Manager", "weight": 1}, {"color": "grey", "from": "root", "to": "Engineer", "weight": 1}, {"color": "grey", "from": "root", "to": "Co-Founder", "weight": 1}, {"color": "grey", "from": "root", "to": "Senior Consultant", "weight": 1}, {"color": "grey", "from": "root", "to": "Data Science Intern", "weight": 1}, {"color": "grey", "from": "root", "to": "Environmental Consultant", "weight": 1}, {"color": "grey", "from": "root", "to": "Graduate Student", "weight": 1}, {"color": "grey", "from": "root", "to": "PHD Candidate", "weight": 1}, {"color": "grey", "from": "root", "to": "Chief Executive Officer", "weight": 1}, {"color": "grey", "from": "root", "to": "Associate Data Analyst", "weight": 1}, {"color": "grey", "from": "root", "to": "PHD Student", "weight": 1}, {"color": "grey", "from": "root", "to": "Sustainability Analyst", "weight": 1}, {"color": "grey", "from": "root", "to": "Postdoctoral Researcher", "weight": 1}, {"color": "grey", "from": "root", "to": "PhD Candidate", "weight": 1}, {"color": "grey", "from": "root", "to": "Catastrophe Risk Analyst", "weight": 1}, {"color": "grey", "from": "root", "to": "Business Development Executive", "weight": 1}, {"color": "grey", "from": "root", "to": "President", "weight": 1}, {"color": "grey", "from": "root", "to": "Product Designer", "weight": 1}, {"color": "grey", "from": "root", "to": "Project Engineer", "weight": 1}, {"color": "grey", "from": "root", "to": "Founder", "weight": 1}, {"color": "grey", "from": "root", "to": "Business Development Manager", "weight": 1}, {"color": "grey", "from": "root", "to": "Associate", "weight": 1}, {"color": "grey", "from": "root", "to": "Business Development Associate", "weight": 1}, {"color": "grey", "from": "root", "to": "Data Engineer", "weight": 1}, {"color": "grey", "from": "root", "to": "Senior Data Analyst", "weight": 1}, {"color": "grey", "from": "root", "to": "Management Associate", "weight": 1}, {"color": "grey", "from": "root", "to": "Assistant Manager", "weight": 1}, {"color": "grey", "from": "root", "to": "Intern", "weight": 1}, {"color": "grey", "from": "root", "to": "UX Designer", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "hierarchicalRepulsion": {
+            "centralGravity": 0.0,
+            "damping": 0.09,
+            "nodeDistance": 120,
+            "springConstant": 0.01,
+            "springLength": 100
+        },
+        "solver": "hierarchicalRepulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
